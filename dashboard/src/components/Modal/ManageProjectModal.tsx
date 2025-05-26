@@ -19,24 +19,54 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { addProject } from '@/services/Projects';
+import { toast } from 'sonner';
 
 const ManageProjectModal = () => {
-  const form = useForm();
+  const form = useForm({
+    defaultValues: {
+      title: '',
+      description: '',
+      technologies: '',
+      liveLink: '',
+      thumbnail: '',
+      clientLink: '',
+      serverLink: '',
+      isAvailable: true,
+      isFeatured: false,
+    },
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const formattedData = {
       ...data,
-      technologies: data.technologies.split(',').map((tech: string) => tech.trim()),
+      technologies: data.technologies
+        ? data.technologies.split(',').map((tech: string) => tech.trim())
+        : [],
       isAvailable: !!data.isAvailable,
       isFeatured: !!data.isFeatured,
     };
-    console.log(formattedData);
+
+    console.log('Formatted Data:', formattedData);
+
+    try {
+      const res = await addProject(formattedData);
+      if (res?.success) {
+        toast.success('Project added successfully!');
+        form.reset(); // Reset form to default values
+      } else {
+        toast.error(res?.message || 'Failed to add project');
+      }
+    } catch (error) {
+      toast.error('Something went wrong!');
+      console.error(error);
+    }
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='px-4 py-2 rounded border-2 border-[#6C63FF] font-bold bg-transparent hover:bg-[#6C63FF] hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105 text-[#6C63FF]'>
+        <Button className="px-4 py-2 rounded border-2 border-[#6C63FF] font-bold bg-transparent hover:bg-[#6C63FF] hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105 text-[#6C63FF]">
           Add Projects
         </Button>
       </DialogTrigger>
@@ -75,7 +105,6 @@ const ManageProjectModal = () => {
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                    typeof='description'
                       placeholder="Short project description..."
                       className="border-[#6C63FF] focus-visible:ring-[#6C63FF]"
                       {...field}
@@ -103,7 +132,7 @@ const ManageProjectModal = () => {
               )}
             />
 
-            {/* LiveLink & Thumbnail - Flex */}
+            {/* Live Link & Thumbnail */}
             <div className="flex flex-col md:flex-row gap-4">
               <FormField
                 control={form.control}
@@ -141,7 +170,7 @@ const ManageProjectModal = () => {
               />
             </div>
 
-            {/* ClientLink & ServerLink - Flex */}
+            {/* ClientLink & ServerLink */}
             <div className="flex flex-col md:flex-row gap-4">
               <FormField
                 control={form.control}
@@ -188,7 +217,7 @@ const ManageProjectModal = () => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={(checked) => field.onChange(checked)}
+                      onCheckedChange={(checked) => field.onChange(!!checked)}
                     />
                   </FormControl>
                   <FormLabel className="!mb-0">Is Featured?</FormLabel>
@@ -205,7 +234,7 @@ const ManageProjectModal = () => {
                   <FormControl>
                     <Checkbox
                       checked={field.value}
-                      onCheckedChange={(checked) => field.onChange(checked)}
+                      onCheckedChange={(checked) => field.onChange(!!checked)}
                     />
                   </FormControl>
                   <FormLabel className="!mb-0">Is Available?</FormLabel>
