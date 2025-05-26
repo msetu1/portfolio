@@ -3,10 +3,10 @@
 
 import { revalidateTag } from "next/cache";
 
-export const addProject = async (data: Record<string, unknown>) => {
+export const addEducation = async (data: Record<string, unknown>) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects/create-project`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/educations/create-education`,
       {
         method: "POST",
         headers: {
@@ -16,39 +16,39 @@ export const addProject = async (data: Record<string, unknown>) => {
         cache: "no-store",
       }
     );
-    revalidateTag("PROJECT");
-    const projectInfo = await res.json();
-    return projectInfo;
+    revalidateTag("EDUCATION");
+    const educationInfo = await res.json();
+    return educationInfo;
   } catch (error) {
-    console.error("Failed to create project:", error);
+    console.error("Failed to create Education:", error);
     return { success: false, message: "Server error" };
   }
 };
-export const allProjects = async () => {
+export const allEducations = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/educations`, {
       next: {
-        tags: ["PROJECT"],
+        tags: ["EDUCATION"],
       },
     });
     return res.json();
   } catch (error) {
-    console.error("Failed to Project:", error);
+    console.error("Failed to Education:", error);
     return { success: false, message: "Server error" };
   }
 };
 
-// delete Project
-export const deleteProject = async (id: string): Promise<any> => {
+// delete Education
+export const deleteEducation = async (id: string): Promise<any> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects/delete-project/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/educations/delete-education/${id}`,
       {
         method: "PUT",
         headers: {"Content-Type": "application/json",},
       }
     );
-    revalidateTag("PROJECT");
+    revalidateTag("Education");
     return res.json();
   } catch (error: any) {
     return Error(error);

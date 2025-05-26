@@ -3,10 +3,10 @@
 
 import { revalidateTag } from "next/cache";
 
-export const addProject = async (data: Record<string, unknown>) => {
+export const addResume = async (data: Record<string, unknown>) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects/create-project`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/resumes/create-resume`,
       {
         method: "POST",
         headers: {
@@ -16,39 +16,39 @@ export const addProject = async (data: Record<string, unknown>) => {
         cache: "no-store",
       }
     );
-    revalidateTag("PROJECT");
-    const projectInfo = await res.json();
-    return projectInfo;
+    revalidateTag("RESUME");
+    const resumeInfo = await res.json();
+    return resumeInfo;
   } catch (error) {
-    console.error("Failed to create project:", error);
+    console.error("Failed to create resume:", error);
     return { success: false, message: "Server error" };
   }
 };
-export const allProjects = async () => {
+export const allResumes = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/resumes`, {
       next: {
-        tags: ["PROJECT"],
+        tags: ["RESUME"],
       },
     });
     return res.json();
   } catch (error) {
-    console.error("Failed to Project:", error);
+    console.error("Failed to Resume:", error);
     return { success: false, message: "Server error" };
   }
 };
 
-// delete Project
-export const deleteProject = async (id: string): Promise<any> => {
+// delete Resume
+export const deleteResume = async (id: string): Promise<any> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects/delete-project/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/resumes/delete-resume/${id}`,
       {
         method: "PUT",
         headers: {"Content-Type": "application/json",},
       }
     );
-    revalidateTag("PROJECT");
+    revalidateTag("RESUME");
     return res.json();
   } catch (error: any) {
     return Error(error);

@@ -1,4 +1,4 @@
-import ManageProductFunc from "@/components/Modal";
+import ManageProductFunc from "@/components/Modal/Projects";
 import { allProjects } from "@/services/Projects";
 
 const ManageProjects = async() => {

@@ -9,7 +9,6 @@ import {
   PencilRuler,
   BookOpenText,
   GraduationCap,
-  BookMarked,
   FileText,
   Settings,
   Menu,
@@ -45,27 +44,16 @@ const menuItems = [
     title: "Educations",
     icon: GraduationCap,
     children: [
-      { title: "Add Education", url: "/dashboard/educations/addEducation" },
       { title: "Manage Education", url: "/dashboard/educations/manageEducations" },
-    ],
-  },
-  {
-    title: "Courses",
-    icon: BookMarked,
-    children: [
-      { title: "Add Course", url: "/dashboard/courses/addCourse" },
-      { title: "Manage Courses", url: "/dashboard/courses/manageCourses" },
     ],
   },
   {
     title: "Resumes",
     icon: FileText,
     children: [
-      { title: "Add Resume", url: "/dashboard/resumes/addResume" },
       { title: "Manage resumes", url: "/dashboard/resumes/manageResumes" },
     ],
-  },
-  { title: "Settings", icon: Settings, url: "/settings" },
+  }
 ];
 
 export default function Sidebar() {
