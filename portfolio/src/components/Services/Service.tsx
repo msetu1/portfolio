@@ -2,7 +2,7 @@
 import { FaCode, FaPaintBrush, FaMobileAlt } from "react-icons/fa";
 const Service = () => {
     return (
-        <div className="max-w-6xl mx-auto my-20 border">
+        <div className="max-w-6xl mx-auto my-32">
           <section className=" py-10  text-white">
       <div className=" text-center">
         

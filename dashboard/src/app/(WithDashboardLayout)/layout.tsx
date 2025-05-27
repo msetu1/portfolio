@@ -17,7 +17,7 @@ export default function WithDashboardLayout({
         <div className="px-4 py-4">
           {children}
         </div>
-        </main>
+      </main>
     </div>
   );
 }

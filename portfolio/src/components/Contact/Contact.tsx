@@ -1,16 +1,61 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+
 "use client"
+import React, { useState } from "react";
 import { BsGithub } from 'react-icons/bs';
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { toast } from "sonner";
 
 const Contact = () => {
-    return (
-        <div className="max-w-6xl mx-auto my-20 border">
-            <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]"> Contact<span className="text-white"> Me</span> 
-             </h2>
-            <div className="flex flex-col lg:flex-row gap-10 ">
-            <div className="w-[40%] flex items-center justify-center ">
-  <div className=" w-full space-y-8 border border-[#6C63FF] p-6">
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState(""); // success or error message
+
+  // Input change handler
+  const handleChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Form submit handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {  // তোমার backend url & route
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" }); // clear form
+      } else {
+        toast.error("Failed to send message.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong.");
+    }
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto my-32 " id="contact">
+      <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]"> Contact<span className="text-white"> Me</span></h2>
+      <div className="flex flex-col lg:flex-row gap-10 ">
+        <div className="w-[40%] flex items-center justify-center ">
+          <div className=" w-full space-y-8 border border-[#6C63FF] p-6">
     {/* Location */}
     <div className="flex items-start gap-4">
       <div className="bg-[#6C63FF] p-3 rounded">
@@ -58,55 +103,74 @@ const Contact = () => {
                 </a>
               </div>
   </div>
-</div>
-
-                    <div className="w-[60%]">
-                <form className="w-full max-w-3xl space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block mb-1">Your Name</label>
-                        <input
-                        type="text"
-                        className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
-                        placeholder="Type your name"
-                        />
-                    </div>
-                    <div>
-                        <label className="block mb-1">Your Email</label>
-                        <input
-                        type="email"
-                        className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
-                        placeholder="Enter your email"
-                        />
-                    </div>
-                    </div>
-
-                    <div>
-                    <label className="block mb-1">Your Phone</label>
-                    <input
-                        type="number"
-                        className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
-                        placeholder="Your Phone Number"
-                    />
-                    </div>
-
-                    <div>
-                    <label className="block mb-1">Message</label>
-                    <textarea
-                        rows={4}
-                        className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
-                        placeholder="Write your message"
-                    ></textarea>
-                    </div>
-
-                    <button className="px-4 py-2 rounded border-2 border-[#6C63FF]  font-semibold bg-transparent hover:bg-[#6C63FF] hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105">
-            Send Message
-            </button>
-                </form>
-                    </div>
-            </div>
         </div>
-    );
+
+        <div className="w-[60%]">
+          <form className="w-full max-w-3xl space-y-4" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-1">Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
+                  placeholder="Type your name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block mb-1">Your Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block mb-1">Your Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
+                placeholder="Your Phone Number"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1">Message</label>
+              <textarea
+                name="message"
+                rows={4}
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full px-4 py-2 bg-black border border-[#6C63FF] rounded outline-none text-white"
+                placeholder="Write your message"
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="px-4 py-2 rounded border-2 border-[#6C63FF] font-semibold bg-transparent hover:bg-[#6C63FF] hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              Send Message
+            </button>
+            <p className="mt-2 text-white">{status}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Contact;

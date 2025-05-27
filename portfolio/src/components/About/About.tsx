@@ -2,19 +2,24 @@
 
 import { FaCheckCircle, FaSmile, FaCode } from 'react-icons/fa';
 import { TbStack3 } from 'react-icons/tb';
-import AboutSVG from '../UI/AboutSVG';
+import Image from 'next/image';
 
 const About = () => {
   return (
-    <div className="max-w-6xl mx-auto my-20 border">
+    <div className="max-w-6xl mx-auto my-32 ">
       <h2 className="text-3xl font-bold mb-10 text-center">
         About <span className="text-[#6C63FF]">Me</span>
       </h2>
 
-      <div className="flex flex-col lg:flex-row items-center gap-8 ">
-      <div className='lg:w-[40%] w-full border'>
-      <AboutSVG/>
-dfgh
+      <div className="flex flex-col lg:flex-row items-center gap-10 ">
+      <div className='lg:w-[40%] w-full'>
+      <Image
+              src="https://i.ibb.co/ZzgvK56K/about-img.png"
+              alt="My Photo"
+              width={400} 
+              height={400}
+              className="object-cover"      
+            />
         </div>
         {/* Information Section */}
         <div className="lg:w-[60%] w-full text-gray-200 space-y-4">

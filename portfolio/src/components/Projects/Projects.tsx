@@ -1,35 +1,16 @@
 'use client';
 
+import { IPProject } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const projects = [
-  {
-    id: 1,
-    title: 'Portfolio Website',
-    image: '/images/projects/portfolio.png',
-    liveLink: 'https://yourportfolio.com',
-    detailsLink: '/projects/portfolio',
-  },
-  {
-    id: 2,
-    title: 'E-commerce Store',
-    image: '/images/projects/ecommerce.png',
-    liveLink: 'https://myecommercestore.com',
-    detailsLink: '/projects/ecommerce',
-  },
-  {
-    id: 2,
-    title: 'E-commerce Store',
-    image: '/images/projects/ecommerce.png',
-    liveLink: 'https://myecommercestore.com',
-    detailsLink: '/projects/ecommerce',
-  },
-];
+type TProjectsProps = {
+  projects: IPProject[];
+};
 
-const Projects = () => {
+const Projects = ({projects}:TProjectsProps) => {
   return (
-    <div className="max-w-6xl mx-auto my-20  border">
+    <div className="max-w-6xl mx-auto my-32">
       <h2 className="text-3xl font-bold mb-4 text-center text-[#6C63FF]">Projects</h2>
 <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
   Explore a collection of my featured projects showcasing my expertise in full-stack <br /> development,  UI/UX design, and real-world problem solving. Each project highlights modern technologies and thoughtful execution.
@@ -37,11 +18,11 @@ const Projects = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {projects.map((project) => (
           <div
-            key={project.id}
+            key={project._id}
             className="relative group overflow-hidden border border-[#6C63FF] "
           >
             <Image
-              src={project.image}
+              src={project.thumbnail}
               alt={project.title}
               width={500}
               height={300}
@@ -60,7 +41,7 @@ const Projects = () => {
                 </Link>
                 <span>|</span>
                 <Link
-                  href={project.detailsLink}
+                  href=""
                   className="underline hover:text-gray-200 text-lg font-medium transition"
                 >
                   View Details
