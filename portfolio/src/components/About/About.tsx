@@ -27,7 +27,7 @@ const About = () => {
         INTRODUCTION
       </h2>
           <p>
-            Hello, I'm <span className="font-semibold text-white">Mst. Setu Akther</span>, a dedicated MERN Stack Developer with expertise in React.js, Next.js, JavaScript, TailwindCSS, Node.js, Express.js, and MongoDB.
+            Hello, I am <span className="font-semibold text-white">Mst. Setu Akther</span>, a dedicated MERN Stack Developer with expertise in React.js, Next.js, JavaScript, TailwindCSS, Node.js, Express.js, and MongoDB.
           </p>
           <p>
             I’m passionate about creating modern, user-friendly, and scalable web applications. I’ve worked on both solo and collaborative projects, developing clean and responsive interfaces that meet real-world demands.

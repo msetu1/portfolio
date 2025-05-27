@@ -1,10 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
 
-
-"use client"
 import React, { useState } from "react";
-import { BsGithub } from 'react-icons/bs';
-import { FaFacebook, FaTwitter, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { BsGithub } from "react-icons/bs";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+} from "react-icons/fa";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -15,23 +21,25 @@ const Contact = () => {
     message: "",
   });
 
-  const [status, setStatus] = useState(""); // success or error message
+  const [status, setStatus] = useState(""); // Success or error message
 
-  // Input change handler
-  const handleChange = (e) => {
-    setFormData(prev => ({
+  // Handle input and textarea change
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
-  // Form submit handler
-  const handleSubmit = async (e) => {
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("Sending...");
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {  // তোমার backend url & route
+      const res = await fetch("https://setu-of-portfolio-server.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,72 +49,106 @@ const Contact = () => {
 
       if (res.ok) {
         toast.success("Message sent successfully!");
-        setFormData({ name: "", email: "", phone: "", message: "" }); // clear form
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setStatus("Message sent!");
       } else {
         toast.error("Failed to send message.");
+        setStatus("Failed to send.");
       }
     } catch (error) {
       toast.error("Something went wrong.");
+      setStatus("Something went wrong.");
     }
   };
 
   return (
-    <div className="max-w-6xl mx-auto my-32 " id="contact">
-      <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]"> Contact<span className="text-white"> Me</span></h2>
-      <div className="flex flex-col lg:flex-row gap-10 ">
-        <div className="w-[40%] flex items-center justify-center ">
-          <div className=" w-full space-y-8 border border-[#6C63FF] p-6">
-    {/* Location */}
-    <div className="flex items-start gap-4">
-      <div className="bg-[#6C63FF] p-3 rounded">
-        <FaMapMarkerAlt className=" text-xl" />
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold">Location:</h3>
-        <p className="text-sm">Dhaka, Bangladesh</p>
-      </div>
-    </div>
-
-    {/* Email */}
-    <div className="flex items-start gap-4">
-      <div className="bg-[#6C63FF] p-3 rounded">
-        <FaEnvelope className=" text-xl" />
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold">Email:</h3>
-        <p className="text-sm break-words">abidahmedmahin21@gmail.com</p>
-      </div>
-    </div>
-
-    {/* Phone */}
-    <div className="flex items-start gap-4">
-      <div className="bg-[#6C63FF] p-3 rounded">
-        <FaPhone className=" text-xl" />
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold">WhatsApp or Call:</h3>
-        <p className="text-sm">+8801761332232</p>
-      </div>
-    </div>
-    <div className="flex space-x-3 text-2xl mt-2">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                  <FaFacebook className="hover:text-blue-500" />
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <FaTwitter className="hover:text-sky-400" />
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <BsGithub className="hover:text-sky-400" />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <FaLinkedin className="hover:text-blue-400" />
-                </a>
+    <div className="max-w-6xl mx-auto my-32" id="contact">
+      <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]">
+        Contact<span className="text-white"> Me</span>
+      </h2>
+      <div className="flex flex-col lg:flex-row gap-10">
+        {/* Left Info Box */}
+        <div className="w-[40%] flex items-center justify-center">
+          <div className="w-full space-y-8 border border-[#6C63FF] p-6">
+            {/* Location */}
+            <div className="flex items-start gap-4">
+              <div className="bg-[#6C63FF] p-3 rounded">
+                <FaMapMarkerAlt className="text-xl" />
               </div>
-  </div>
+              <div>
+                <h3 className="text-lg font-semibold">Location:</h3>
+                <p className="text-sm">Dhaka, Bangladesh</p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-4">
+              <div className="bg-[#6C63FF] p-3 rounded">
+                <FaEnvelope className="text-xl" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Email:</h3>
+                <p className="text-sm break-words">
+                  abidahmedmahin21@gmail.com
+                </p>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-start gap-4">
+              <div className="bg-[#6C63FF] p-3 rounded">
+                <FaPhone className="text-xl" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">WhatsApp or Call:</h3>
+                <p className="text-sm">+8801761332232</p>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex space-x-3 text-2xl mt-2">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <FaFacebook className="hover:text-blue-500" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
+                <FaTwitter className="hover:text-sky-400" />
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <BsGithub className="hover:text-sky-400" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="hover:text-blue-400" />
+              </a>
+            </div>
+          </div>
         </div>
 
+        {/* Contact Form */}
         <div className="w-[60%]">
-          <form className="w-full max-w-3xl space-y-4" onSubmit={handleSubmit}>
+          <form
+            className="w-full max-w-3xl space-y-4"
+            onSubmit={handleSubmit}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block mb-1">Your Name</label>
@@ -174,3 +216,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

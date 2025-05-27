@@ -23,9 +23,7 @@ const ManageResumesFunc = ({resumes}:TResumesProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   
 
-const handleEdit = (resume) => {
-  console.log('Edit resume:', resume);
-  // Open edit modal or navigate to edit form
+const handleEdit = () => {
 };
 
 // delete skills
@@ -39,7 +37,7 @@ const handleEdit = (resume) => {
     try {
       if (selectedId) {
         const res = await deleteResume(selectedId);
-        console.log(res);
+        // console.log(res);
         if (res.success) {
           toast.success(res.message);
           setModalOpen(false);
@@ -72,7 +70,7 @@ const handleEdit = (resume) => {
         <button
           className="text-green-500 hover:text-green-700 transition-colors"
           title="Edit"
-          onClick={() => handleEdit(data)}
+          onClick={() => handleEdit()}
         >
           <Pencil className="w-5 h-5" />
         </button>

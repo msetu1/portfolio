@@ -10,7 +10,6 @@ import {
   BookOpenText,
   GraduationCap,
   FileText,
-  Settings,
   Menu,
   ChevronUp,
   ChevronDown,

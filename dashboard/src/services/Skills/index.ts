@@ -16,7 +16,8 @@ export const addSkill = async (data: Record<string, unknown>) => {
         cache: "no-store",
       }
     );
-revalidateTag("SKILL");
+    console.log(process.env.NEXT_PUBLIC_BASE_API);
+    revalidateTag("SKILL");
     const skillInfo = await res.json();
     return skillInfo;
   } catch (error) {
@@ -26,7 +27,7 @@ revalidateTag("SKILL");
 };
 export const allSkills = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/skills`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/skills`, {
       next: {
         tags: ["SKILL"],
       },
@@ -45,7 +46,7 @@ export const deleteSkill = async (id: string): Promise<any> => {
       `${process.env.NEXT_PUBLIC_BASE_API}/skills/delete-skill/${id}`,
       {
         method: "PUT",
-        headers: {"Content-Type": "application/json",},
+        headers: { "Content-Type": "application/json" },
       }
     );
     revalidateTag("SKILL");
@@ -54,5 +55,3 @@ export const deleteSkill = async (id: string): Promise<any> => {
     return Error(error);
   }
 };
-
-

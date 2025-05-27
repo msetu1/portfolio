@@ -24,19 +24,17 @@ const ManageProductFunc = ({projects}:TProjectsProps) => {
 
     
 
-    const handleView = (project) => {
-  console.log('View project:', project);
-  // Optionally open a modal or navigate to detail page
+    const handleView = () => {
+ 
 };
 
-const handleEdit = (project) => {
-  console.log('Edit project:', project);
-  // Open edit modal or navigate to edit form
+const handleEdit = () => {
+ 
 };
 
 // delete skills
     const handleDelete = (data: IProject) => {
-    console.log(data?._id);
+    // console.log(data?._id);
     setSelectedId(data?._id);
     setSelectedItem(data?.title);
     setModalOpen(true);
@@ -46,7 +44,7 @@ const handleEdit = (project) => {
     try {
       if (selectedId) {
         const res = await deleteProject(selectedId);
-        console.log(res);
+        // console.log(res);
         if (res.success) {
           toast.success(res.message);
           setModalOpen(false);
@@ -97,7 +95,7 @@ const handleEdit = (project) => {
   cell: ({ row }) => {
    
     const link = row.original.liveLink;
-    const displayText = expanded ? link : `${link.slice(0, 15)}...`;
+    const displayText = expanded ? link : `${typeof link === 'string' &&link.slice(0, 15)}...`;
 
     return (
       <div className="flex flex-col">
@@ -109,7 +107,7 @@ const handleEdit = (project) => {
         >
           {displayText}
         </a>
-        {link.length > 15 && (
+        {typeof link === 'string' &&link.length> 15 && (
           <button
             onClick={() => setExpanded(!expanded)}
             className="text-xs text-[#6C63FF] hover:underline self-start"
@@ -148,7 +146,7 @@ const handleEdit = (project) => {
         <button
           className="text-blue-500 hover:text-blue-700 transition-colors"
           title="View"
-          onClick={() => handleView(data)}
+          onClick={() => handleView()}
         >
           <Eye className="w-5 h-5" />
         </button>
@@ -157,7 +155,7 @@ const handleEdit = (project) => {
         <button
           className="text-green-500 hover:text-green-700 transition-colors"
           title="Edit"
-          onClick={() => handleEdit(data)}
+          onClick={() => handleEdit()}
         >
           <Pencil className="w-5 h-5" />
         </button>

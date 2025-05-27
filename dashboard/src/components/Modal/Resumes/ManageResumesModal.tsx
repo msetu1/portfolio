@@ -32,7 +32,7 @@ const ManageResumesModal = () => {
       ...data
     };
 
-    console.log('Formatted Data:', formattedData);
+    // console.log('Formatted Data:', formattedData);
 
     try {
       const res = await addResume(formattedData);

@@ -22,7 +22,7 @@ const Projects = ({projects}:TProjectsProps) => {
             className="relative group overflow-hidden border border-[#6C63FF] "
           >
             <Image
-              src={project.thumbnail}
+              src={project.thumbnail as string}
               alt={project.title}
               width={500}
               height={300}
@@ -33,7 +33,7 @@ const Projects = ({projects}:TProjectsProps) => {
             <div className="absolute bottom-0 left-0 right-0 bg-[#6C63FF] text-white text-center py-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="flex justify-center gap-4 text-sm font-medium">
                 <Link
-                  href={project.liveLink}
+                  href={project.liveLink as string}
                   target="_blank"
                   className="underline hover:text-gray-200 text-lg font-medium transition"
                 >

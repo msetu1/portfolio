@@ -47,7 +47,7 @@ const ManageProjectModal = () => {
       isFeatured: !!data.isFeatured,
     };
 
-    console.log('Formatted Data:', formattedData);
+    // console.log('Formatted Data:', formattedData);
 
     try {
       const res = await addProject(formattedData);

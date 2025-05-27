@@ -23,7 +23,7 @@ const SkillCategory = ({skills}:TSkillsProps) => {
 
     // delete skills
     const handleDelete = (data: ISkill) => {
-    console.log(data?._id);
+    // console.log(data?._id);
     setSelectedId(data?._id);
     setSelectedItem(data?.name);
     setModalOpen(true);
@@ -33,7 +33,7 @@ const SkillCategory = ({skills}:TSkillsProps) => {
     try {
       if (selectedId) {
         const res = await deleteSkill(selectedId);
-        console.log(res);
+        // console.log(res);
         if (res.success) {
           toast.success(res.message);
           setModalOpen(false);
@@ -110,7 +110,7 @@ const SkillCategory = ({skills}:TSkillsProps) => {
     ),
   },
 ]
-    console.log(skills)
+    // console.log(skills)
     return (
         <div>
             <div className="flex items-center justify-between mb-10">

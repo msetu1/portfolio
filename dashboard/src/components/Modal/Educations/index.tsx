@@ -19,21 +19,19 @@ const ManageEducations = ({educations}:TEducationsProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
     
 
-    const handleView = (education) => {
-  console.log('View education:', education);
-  // Optionally open a modal or navigate to detail page
+    const handleView = () => {
+  
 };
 
-const handleEdit = (education) => {
-  console.log('Edit education:', education);
-  // Open edit modal or navigate to edit form
+const handleEdit = () => {
+ 
 };
 
 // delete skills
     const handleDelete = (data: IEducation) => {
-    console.log(data?._id);
+    // console.log(data?._id);
     setSelectedId(data?._id);
-    setSelectedItem(data?.title);
+    setSelectedItem(data?.degree);
     setModalOpen(true);
   };
 
@@ -41,7 +39,7 @@ const handleEdit = (education) => {
     try {
       if (selectedId) {
         const res = await deleteEducation(selectedId);
-        console.log(res);
+        // console.log(res);
         if (res.success) {
           toast.success(res.message);
           setModalOpen(false);
@@ -96,14 +94,14 @@ const handleEdit = (education) => {
           <button
             className="text-blue-500 hover:text-blue-700"
             title="View"
-            onClick={() => handleView(data)}
+            onClick={() => handleView()}
           >
             <Eye className="w-5 h-5" />
           </button>
           <button
             className="text-green-500 hover:text-green-700"
             title="Edit"
-            onClick={() => handleEdit(data)}
+            onClick={() => handleEdit()}
           >
             <Pencil className="w-5 h-5" />
           </button>

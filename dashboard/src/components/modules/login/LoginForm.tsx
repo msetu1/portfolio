@@ -21,11 +21,11 @@ export function LoginForm() {
       email,
       password,
     };
-    console.log(loginData);
+    // console.log(loginData);
 
     try {
       const result = await loginUser(loginData);
-      console.log(result);
+      // console.log(result);
       if (result?.success) {
         toast.success("Logged in successfully!");
         router.push("/dashboard");
