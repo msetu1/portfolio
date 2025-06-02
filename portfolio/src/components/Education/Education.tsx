@@ -3,6 +3,7 @@ import { IPEducation } from '@/types';
 import Image from 'next/image';
 import { useState } from 'react';
 import { MdOutlineFileDownload } from 'react-icons/md';
+import { motion } from 'framer-motion';
 
 const categories: IPEducation["category"][] = ['Diploma', 'SSC', 'Courses'];
 
@@ -21,12 +22,22 @@ const Education = ({ educations }: TEducationsProps) => {
 
   return (
     <div className="max-w-6xl mx-auto my-32 text-white">
-      <h2 className="text-3xl font-bold mb-10 text-center">
-        Education <span className="text-[#6C63FF]">&amp;&amp; Courses</span>
-      </h2>
+      <motion.h2
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="text-3xl font-bold mb-10 text-center">
+        Education <span className="text-[#6C63FF]">&amp; Courses</span>
+      </motion.h2>
 
       <div className="flex flex-col lg:flex-row items-center gap-8">
-        <div className="w-[60%]">
+        <motion.div
+    initial={{ x: -100, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="w-full lg:w-[60%]">
           {/* Tabs */}
           <div className="flex justify-center gap-4 mb-6 flex-wrap">
             {categories.map((tab) => (
@@ -101,9 +112,14 @@ const Education = ({ educations }: TEducationsProps) => {
               </div>
             ))
           )}
-        </div>
+        </motion.div>
 
-        <div className="w-[40%] ">
+        <motion.div
+    initial={{ x: 100, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="w-full lg:w-[40%]">
           <Image
         src="https://i.ibb.co/9mmSQrhD/Pull-request-rafiki.png"
         alt="My Photo"
@@ -111,7 +127,7 @@ const Education = ({ educations }: TEducationsProps) => {
         height={500}
         className="object-cover"      
       />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ISoftSkill} from '@/types';
+import { ISoftSkill } from '@/types';
+import { motion} from 'framer-motion'; // ✅ Import AnimatePresence
 
-// Define categories from the ISoftSkill interface
 const categories: ISoftSkill["category"][] = [
   'Expertise',
   'Comfortable',
@@ -12,10 +12,9 @@ const categories: ISoftSkill["category"][] = [
   'Tools',
 ];
 
-type TSkillsProps={
-    skills:ISoftSkill[]
-}
-
+type TSkillsProps = {
+  skills: ISoftSkill[];
+};
 
 const Skills = ({ skills }: TSkillsProps) => {
   const [activeCategory, setActiveCategory] = useState<ISoftSkill["category"]>('Expertise');
@@ -28,33 +27,45 @@ const Skills = ({ skills }: TSkillsProps) => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto my-32 ">
-      <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]">
+    <div className="max-w-6xl mx-auto my-32">
+      <motion.h2
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="text-3xl font-bold mb-10 text-center text-[#6C63FF]">
         My<span className="text-white"> Skills</span>
-      </h2>
+      </motion.h2>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-10 justify-center">
+      <div className="flex gap-4 mb-10 justify-center relative">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-md border font-semibold ${
-              activeCategory === cat
-                ? 'bg-[#6C63FF] text-white'
-                : 'border-[#6C63FF]'
-            } transition`}
+            className={`relative px-4 py-2 rounded-md border font-semibold border-[#6C63FF] text-[#6C63FF] transition`}
           >
             {cat}
+            {activeCategory === cat && (
+              <motion.div
+                layoutId="underline"
+                className="absolute left-0 right-0 bottom-0 h-1 bg-[#6C63FF] rounded"
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            )}
           </button>
         ))}
       </div>
 
-      {/* Skill Icons */}
-      <div className="flex items-center justify-center gap-6">
-        {filteredSkills.map((skill) => (
-          <div
+      {/* Skill Icons with Motion */}
+      <div className="flex items-center justify-center gap-6 flex-wrap">
+        {filteredSkills.map((skill, index) => (
+          <motion.div
             key={skill._id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
             className="relative group flex flex-col items-center justify-center"
           >
             <div className="w-20 h-20 p-2 border-2 border-[#6C63FF] rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">
@@ -72,12 +83,11 @@ const Skills = ({ skills }: TSkillsProps) => {
             <div className="text-lg mt-2 text-[#6C63FF] font-medium text-center opacity-0 group-hover:opacity-100 transition">
               {skill.name}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
   );
 };
-
 
 export default Skills;

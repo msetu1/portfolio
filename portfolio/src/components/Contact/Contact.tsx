@@ -12,6 +12,7 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import { toast } from "sonner";
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -63,13 +64,23 @@ const Contact = () => {
 
   return (
     <div className="max-w-6xl mx-auto my-32" id="contact">
-      <h2 className="text-3xl font-bold mb-10 text-center text-[#6C63FF]">
+      <motion.div
+   initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }} 
+  className="text-3xl font-bold mb-10 text-center text-[#6C63FF]">
         Contact<span className="text-white"> Me</span>
-      </h2>
+      </motion.div>
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Left Info Box */}
-        <div className="w-[40%] flex items-center justify-center">
-          <div className="w-full space-y-8 border border-[#6C63FF] p-6">
+        <motion.div
+    initial={{ x: -100, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="w-full lg:w-[40%] flex items-center justify-center">
+          <div className="w-full space-y-8 border border-[#6C63FF] rounded-md p-6">
             {/* Location */}
             <div className="flex items-start gap-4">
               <div className="bg-[#6C63FF] p-3 rounded">
@@ -141,10 +152,15 @@ const Contact = () => {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Form */}
-        <div className="w-[60%]">
+        <motion.div
+    initial={{ x: 100, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="w-full lg:w-[60%]">
           <form
             className="w-full max-w-3xl space-y-4"
             onSubmit={handleSubmit}
@@ -209,7 +225,7 @@ const Contact = () => {
             </button>
             <p className="mt-2 text-white">{status}</p>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
