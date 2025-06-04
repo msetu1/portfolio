@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { allEducations, allProjects, allResumes, allSkills } from "@/api";
 import About from "@/components/About/About";
 import Banner from "@/components/Banner/Banner";
@@ -21,7 +22,7 @@ const HomePage = async () => {
   const projectsData = projectsRes.data;
   const educationsData = educationsRes.data;
   const resumesData = resumesRes.data;
-  console.log(resumesData)
+ 
   return (
     <div>
       <section id="banner">
