@@ -119,7 +119,7 @@ const Contact = () => {
             {/* Social Links */}
             <div className="flex space-x-3 text-2xl mt-2">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/rfsaatu"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -135,7 +135,7 @@ const Contact = () => {
                 <FaTwitter className="hover:text-sky-400" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/msetu1"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -143,7 +143,7 @@ const Contact = () => {
                 <BsGithub className="hover:text-sky-400" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/mst-setu-akter-33a7872a4/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
