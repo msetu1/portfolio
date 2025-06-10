@@ -21,7 +21,7 @@ const Education = ({ educations }: TEducationsProps) => {
   const isCourseTab = activeTab === 'Courses';
 
   return (
-    <div className="max-w-6xl mx-auto my-32 text-white">
+    <div className="max-w-6xl mx-auto my-32 text-white px-4 lg:px-0 md:px-0">
       <motion.h2
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}

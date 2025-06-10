@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -44,14 +45,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 text-white p-7 shadow-md z-50 border-b border-white/10">
+    <nav className="fixed top-0 left-0 w-full  text-white p-7 shadow-md z-50 ">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <h1
+        <Link href='/'
           className="text-xl font-bold cursor-pointer"
           onClick={() => handleScroll("banner")}
         >
           Setu Akther
-        </h1>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-md font-medium">

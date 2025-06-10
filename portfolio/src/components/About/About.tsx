@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <div className="max-w-6xl mx-auto my-32 ">
+    <div className="max-w-6xl mx-auto my-32 px-4 lg:px-0 md:px-0">
       <motion.h2
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -65,23 +65,23 @@ const About = () => {
   transition={{ duration: 0.6 }}
   className=" bg-[#15162c] border border-[#6C63FF] p-4 rounded-xl shadow-lg text-white grid grid-cols-1 sm:grid-cols-4 gap-4 text-center mt-10">
           <div className="flex flex-col items-center space-y-2">
-            <FaCheckCircle className="text-3xl text-sky-400" />
-            <p className="text-2xl font-bold text-sky-400">20+</p>
+            <FaCheckCircle className="text-3xl text-[#6C63FF]" />
+            <p className="text-2xl font-bold text-[#6C63FF]">20+</p>
             <p className="uppercase text-xs tracking-wider text-gray-400">Projects</p>
           </div>
           <div className="flex flex-col items-center space-y-2">
-  <TbStack3 className="text-3xl text-sky-400" />
-  <p className="text-2xl font-bold text-sky-400">3+</p>
+  <TbStack3 className="text-3xl text-[#6C63FF]" />
+  <p className="text-2xl font-bold text-[#6C63FF]">3+</p>
   <p className="uppercase text-xs tracking-wider text-gray-400">Full Stack </p>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <FaSmile className="text-3xl text-sky-400" />
-            <p className="text-2xl font-bold text-sky-400">2+</p>
+            <FaSmile className="text-3xl text-[#6C63FF]" />
+            <p className="text-2xl font-bold text-[#6C63FF]">2+</p>
             <p className="uppercase text-xs tracking-wider text-gray-400">Clients</p>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <FaCode className="text-3xl text-sky-400" />
-            <p className="text-2xl font-bold text-sky-400">2+ yr</p>
+            <FaCode className="text-3xl text-[#6C63FF]" />
+            <p className="text-2xl font-bold text-[#6C63FF]">2+ yr</p>
             <p className="uppercase text-xs tracking-wider text-gray-400">Experience</p>
           </div>
         </motion.h2>

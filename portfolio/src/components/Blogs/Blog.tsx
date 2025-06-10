@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 const Blog = () => {
     return (
-        <div className="max-w-6xl mx-auto my-32 border">
+        <div className="max-w-6xl mx-auto my-32  px-4 lg:px-0 md:px-0">
         <motion.h2
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}

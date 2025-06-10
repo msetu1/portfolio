@@ -26,7 +26,7 @@ const services = [
 
 const Service = () => {
   return (
-    <div className="max-w-6xl mx-auto my-32">
+    <div className="max-w-6xl mx-auto my-32 px-4 lg:px-0 md:px-0">
       <section className="py-10 text-white">
         <div className="text-center">
           <motion.h2

@@ -27,7 +27,7 @@ const Skills = ({ skills }: TSkillsProps) => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto my-32">
+    <div className="max-w-6xl mx-auto my-32 px-4 lg:px-0 md:px-0">
       <motion.h2
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const Skills = ({ skills }: TSkillsProps) => {
       </motion.h2>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-10 justify-center relative">
+      <div className="flex flex-col lg:flex-row md:flex-row gap-4 mb-10 justify-center relative ">
         {categories.map((cat) => (
           <button
             key={cat}

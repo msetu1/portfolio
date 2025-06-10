@@ -5,7 +5,6 @@ import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "sonner";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,11 +33,12 @@ export default function RootLayout({
          
         <Navbar/>
         <div>
-          {children}
-          <Toaster richColors position="top-center" />
+           {children}
+            <Toaster richColors position="top-center" />
         </div>
         <Footer/>
       </body>
     </html>
   );
 }
+
